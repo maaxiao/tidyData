@@ -27,7 +27,6 @@ colnames(selectedData)[3:ncol(selectedData)] <- features$V2
 
 
 # Create a second data set with the average of each variable for each activity and each subject.
-selectedData <- selectedData[order(selectedData$activity, selectedData$subject), ]
 groups <- split(selectedData,list(selectedData$subject, selectedData$activity))
 averageData <- sapply(groups, colMeans)
 averageData <- data.frame(t(averageData))
@@ -39,5 +38,4 @@ averageData$activity <- activities$V2[averageData$activity]
 
 
 # Save output data.
-write.table(selectedData, './tidyData.txt', row.name=FALSE)
 write.table(averageData, './tidyAverageData.txt', row.name=FALSE)
